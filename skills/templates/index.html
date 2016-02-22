@@ -1,0 +1,24 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+{% if latest_skill_list %}
+	<table class="table">
+		<thead>
+			<th>#</th>
+			<th>Habilidad</th>
+		</thead>
+		{% for skill in latest_skill_list %}
+			<tr>
+				<td>{{ skill.id }}</td>
+				<td>
+					<a href="/skills/{{skill.id}}">{{skill.skill_text}}</a>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% else %}
+	<p>No hay habilidades disponibles</p>
+{% endif %}
+
+{% endblock %}

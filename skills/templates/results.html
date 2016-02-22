@@ -1,0 +1,15 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+<h1>{{ skill.skill_text }}</h1>
+
+<ul>
+	{% for choice in skill.choice_set.all %}
+		<li>{{ choice.choice_text }} -- {{ choice.votes }} voto{{ choice.votes|pluralize }}</li>
+	{% endfor %}
+</ul>
+
+<a href="{% url 'detail' skill.id %}">¡Vota otra vez!</a>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'layouts/main.html' %}
+
+{% block content %}
+
+<h1>{{ skill.skill_text }}</h1>
+
+{% if error_message %}
+	<p>
+		<strong>
+			{{error_message}}
+		</strong>
+	</p>
+{% endif %}
+
+<form action="{% url 'vote' skill.id %}" method="POST">
+	{% csrf_token %}
+	{% for choice in skill.choice_set.all %}
+		<input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}" />
+		<label for="choice{{forloop.counter}}">{{choice.choice_text}}</label><br/>
+	{% endfor %}
+	<input type="submit" value="Votar" class="btn btn-primary"/>
+</form>
+
+{% endblock %}
